@@ -6,4 +6,4 @@ O GoStack é um treinamento online, prático e intensivo,no formato de bootcamp.
 
 ## O que você encontra nesse repositório?
 
-Aqui você encontra meus exercícios e desafios do curso enquanto me torno um profissional que consegue dominar essas tecnologias!
+Aqui você encontra meus exercícios e desafios do curso enquanto aprendo e domino essas tecnologias!
