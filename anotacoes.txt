@@ -1,0 +1,84 @@
+YARN
+
+yarn init -y  ( Inicia  a pasta com um package.json )
+yarn add extensao (instala pacotes de extensao )
+yarn add eslint -D  ESLINT = padronização de codigo 
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+yarn eslint --fix src --ext .js (arruma arquivos de determinada extensão em um diretorio )
+
+
+____________________________________________________________________________________________________
+
+PACOTES NODE
+
+- NODEMON 
+	server para nao ter de ficar dando refresh no server, é interessante criar no package.json um item "scripts" conforme a seguir:
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+por exemplo ao digitar yarn dev  o nodemon rode esse script 
+
+
+----------------------------------------------------------------------------------------------------
+SEQUELISE 
+ORM para NodeJS para bancos de dados relacionais (sqlite,postgres,mysql)
+ORM - Abstrai o banco de dados
+
+Junto com o sequelise temos acesso as 
+   Migrations (a partir que a migration é criada nao pode ser editada, cria-se uma nova migration para as alteraçoes)
+   Seeds : Popula a base de dados 
+
+MVC 
+MODEL abstração do banco 
+CONTROLLER regras de negocio, ponto de entradas da requisiçoes
+	Classe
+	retorna sempre json
+	nao chama outro controller
+
+
+apenas 5 metodos 
+class UserController{
+index(){} //listagem de usuarios
+show(){} //um unico usuário
+store(){} //cadastra usuário
+update(){} //atualiza usuário
+delete(){} //remove usuario
+
+}
+VIEW visualização
+----------------------------------------------------------------------------------------------------
+
+
+- SUCRASE 
+	serve para utilizar a sintaxe mais nova do javascript que faz com que vc possa utilizar import no lugar do require, desta forma podemos utilizar o import export das novas notações do js .
+	para que o nodemon utilize o sucrase-node no lugar do node para rodar a aplicação é necessário criar um arquivo nodemon.json e criar um objeto da seguinte forma 
+	{
+	  "execMap": {
+	    "js": "sucrase-node"
+	  }
+	}
+___________________________________________________________________________________________________
+
+
+POSTGRESS SQL 
+	Porta padrão :5432
+
+
+____________________________________________________________________________________________________
+MONGODB
+		Porta padrão  :27017
+
+
+
+_____________________________________________________________________________________________________
+
+DOCKER
+- CRIANDO CONTAINER POSTGRES definindo senha e remapeando porta localhost para porta do container
+	docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+-docker ps -a = mostra todos containers baixados
+-docker ps = mostra todos containers em execução
+-docker stop nome-do-container  para o container
+-docker start nome-do-container inicia o container
+
+
