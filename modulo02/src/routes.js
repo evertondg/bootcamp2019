@@ -1,11 +1,16 @@
 import { Router } from 'express';
 
+import authMiddleware from './app/middlewares/auth';
+// Controllers
+import UserController from './app/controllers/UserController';
+import SessionController from './app/controllers/SessionController';
+
 const routes = new Router();
 
-routes.get('/', (req, res) => res.json({ message: 'Hello World VERTAO' }));
+routes.post('/users', UserController.store);
+routes.post('/sessions', SessionController.store);
 
-// Sintaxe node
-// module.exports = routes;
+routes.use(authMiddleware);
+routes.put('/users', UserController.update);
 
-// sintaxe do 'sucrase' import export javascript novo
 export default routes;

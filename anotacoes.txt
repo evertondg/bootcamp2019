@@ -5,7 +5,7 @@ yarn add extensao (instala pacotes de extensao )
 yarn add eslint -D  ESLINT = padronização de codigo 
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 yarn eslint --fix src --ext .js (arruma arquivos de determinada extensão em um diretorio )
-
+yarn add bcryptjs  (criptografia de senha hash)
 
 ____________________________________________________________________________________________________
 
