@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore, format } from 'date-fns';
+import { Op } from 'sequelize';
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import User from '../models/User';
 import File from '../models/File';
 import Appointment from '../models/Appointment';
 import Notification from '../schemas/Notification';
 
-class AppointmentController {
+class AppointmentController {q
   async index(req, res) {
     const { page = 1 } = req.query;
     const appointments = await Appointment.findAll({
@@ -15,7 +16,7 @@ class AppointmentController {
         canceled_at: null,
       },
       order: ['date'],
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'canceled_at'],
       limit: 20,
       offset: (page - 1) * 20,
       include: [
@@ -61,6 +62,18 @@ class AppointmentController {
       return res
         .status(401)
         .json({ error: 'You can only create appointments with providers' });
+    }
+
+    const checkIsProviderUser = await User.findOne({
+      where: {
+        id: {
+          [Op.notIn]: req.userId,
+        },
+      },
+    });
+
+    if (checkIsProviderUser) {
+      return res.status(401).json({ error: 'You choose other provider' });
     }
 
     const hourStart = startOfHour(parseISO(date));
@@ -112,6 +125,27 @@ class AppointmentController {
       content: `Novo agendamento de ${user.name} para ${formattedDate} `,
       user: provider_id,
     });
+
+    return res.json(appointment);
+  }
+
+  async delete(req, res) {
+    const appointment = await Appointment.findByPk(req.params.id);
+
+    if (appointment.user_id !== req.userId) {
+      return res.status(401).json({
+        error: "You don't have permission to cancel this appointment",
+      });
+    }
+
+    const dateWithSub = subHours(appointment.date, 2);
+    if(isBefore(dateWithSub,new Date())){
+      return res.status(401).json({error: 'You can only cancel appointments 2 hours in advance.'})
+    }
+
+    appointment.canceled_at = new Date();
+
+    await appointment.save();
 
     return res.json(appointment);
   }
