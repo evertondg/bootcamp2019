@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "nodemailer": "^6.3.0"
+    "nodemailer": "^6.3.0",
+    "youch": "^2.0.10"
   }
 }
