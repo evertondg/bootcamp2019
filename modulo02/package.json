@@ -23,7 +23,9 @@
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.15.2",
-    "yup": "^0.27.0"
+    "yup": "^0.27.0",
+    "youch": "^2.0.10",
+    "dotenv": "^8.1.0"
   },
   "devDependencies": {
     "eslint": "^6.2.1",
