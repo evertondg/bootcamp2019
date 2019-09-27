@@ -24,7 +24,7 @@ Inicialmente, crie um arquivo **_babel.config.js_** na raiz do seu projeto. Com 
 
 ```javascript
 // utilizamos a sintaxe antiga para a exportação
-module.export = {
+module.exports = {
   presets: [
     // altera as funcionalidades que o navegador ainda nao entende no JS
     // (Ex.: import, export, classes, arrow functions, etc )
