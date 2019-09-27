@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 import everton from './assets/everton.jpeg';
+
+import Techlist from './components/techlist/Techlist';
 function App() {
-  return <img width="200" src={everton} />;
+  return <Techlist />;
 }
 
 export default App;
